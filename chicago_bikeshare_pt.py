@@ -168,14 +168,13 @@ plt.title('Quantidade por Tipo de Usuário')
 plt.show(block=True)    
 print("\nTAREFA 7: Verifique o gráfico!")
 
-
 input("Aperte Enter para continuar...")
 # TAREFA 8
 # TODO: Responda a seguinte questão
 male, female = count_gender(data_list)
 print("\nTAREFA 8: Por que a condição a seguir é Falsa?")
 print("male + female == len(data_list):", male + female == len(data_list))
-answer = "Escreva sua resposta aqui."
+answer = "Porque apesar de termos 2 gêneros no nosso espaço amostral(\"male\" / \"female\"), possuimos {} registros sem cadastro.".format(count_by_gender_filtered(""))
 print("resposta:", answer)
 
 # ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
