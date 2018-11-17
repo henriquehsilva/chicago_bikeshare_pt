@@ -45,7 +45,7 @@ input("Aperte Enter para continuar...")
 # TAREFA 2
 # TODO: Imprima o `gênero` das primeiras 20 linhas
 
-print("\nTAREFA 2: Imprimindo o gênero das primeiras 20 amostras")
+print_data(data_list, 20, -2)
 
 
 # Ótimo! Nós podemos pegar as linhas(samples) iterando com um for, e as colunas(features) por índices.
