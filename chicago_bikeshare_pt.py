@@ -60,10 +60,10 @@ def column_to_list(data, index):
     for row in data: column_list.append(row[index])            
     return column_list
 
-
+gender_list = column_to_list(data_list, -2)
 # Vamos checar com os gêneros se isso está funcionando (apenas para os primeiros 20)
 print("\nTAREFA 3: Imprimindo a lista de gêneros das primeiras 20 amostras")
-print(column_to_list(data_list, -2)[:20])
+print(gender_list[:20])
 
 # ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
 assert type(column_to_list(data_list, -2)) is list, "TAREFA 3: Tipo incorreto retornado. Deveria ser uma lista."
@@ -75,9 +75,11 @@ input("Aperte Enter para continuar...")
 # Agora sabemos como acessar as features, vamos contar quantos Male (Masculinos) e Female (Femininos) o dataset tem
 # TAREFA 4
 # TODO: Conte cada gênero. Você não deveria usar uma função para isso.
-male = 0
-female = 0
 
+count_by_gender_filtered = lambda gender_filtered: len(list(filter(lambda gender: gender == gender_filtered, gender_list)))
+
+male   = count_by_gender_filtered("Male")
+female = count_by_gender_filtered("Female")
 
 # Verificando o resultado
 print("\nTAREFA 4: Imprimindo quantos masculinos e femininos nós encontramos")
