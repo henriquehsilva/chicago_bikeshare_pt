@@ -206,7 +206,7 @@ def count_user_type(data_list):
         Lista com [count_customer, count_subscriber] (exemplo: [10, 15] significa 10 Customer, 15 Subscriber).
 
     """
-    
+
     return [count_by_user_type_filtered("Customer"), count_by_user_type_filtered("Subscriber")]
 
 # Se tudo está rodando como esperado, verifique este gráfico!
@@ -291,13 +291,24 @@ input("Aperte Enter para continuar...")
 # TODO: Crie uma função para contar tipos de usuários, sem definir os tipos
 # para que nós possamos usar essa função com outra categoria de dados.
 print("Você vai encarar o desafio? (yes ou no)")
-answer = "no"
+answer = "yes"
 
 def count_items(column_list):
-    item_types = []
-    count_items = []
-    return item_types, count_items
+    """
+    Função count_items(column_list).
+    Conta os tipos de usuários, sem definir os tipos.
+    Argumentos:
+        column_list: Lista de dados de uma coluna de uma matriz filtrada.        
+    Retorna:
+        Retorna 2 listas contendo [item_types] e [count_items] Ex: ['', 'Female', 'Male'], [316867, 298784, 935854]
 
+    """
+
+    count_by_user_type_filtered = lambda user_type_filtered: len(list(filter(lambda user_type: user_type == user_type_filtered, column_list)))
+    item_types = list(set(column_list))
+    count_items = list(map(count_by_user_type_filtered, item_types))
+
+    return item_types, count_items
 
 if answer == "yes":
     # ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
