@@ -29,6 +29,18 @@ input("Aperte Enter para continuar...")
 # TODO: Imprima as primeiras 20 linhas usando um loop para identificar os dados.
 
 def print_data(list, size, column=False):
+    """
+    Função print_data(list, size, column=False).
+    Utilizado para imprimir as linhas de uma base de dados.
+    Argumentos:
+        list: Lista que será varrida.
+        size: Limite do indice a ser varrido.
+        column: Determina qual característica a ser listado, caso não seja declarado será listado todas as características 
+    Retorna:
+        Imprime uma lista a partir de uma lista de dados.
+
+    """
+    
     first_twenty_rows = list[:size]
     for row in first_twenty_rows: 
         print(row if not column else row[column])
@@ -55,6 +67,17 @@ input("Aperte Enter para continuar...")
 # TAREFA 3
 # TODO: Crie uma função para adicionar as colunas(features) de uma lista em outra lista, na mesma ordem
 def column_to_list(data, index):
+    """
+    Função column_to_list(data, index).
+    Adiciona colunas(features) de uma lista em outra lista, na mesma ordem.
+    Argumentos:
+        data: Base com a matriz a ser filtrada.
+        index: Determina o índice da coluna a ser filtrada.    
+    Retorna:
+        Uma lista com os dados da coluna filtrada da base.
+
+    """
+
     column_list = []
     # Dica: Você pode usar um for para iterar sobre as amostras, pegar a feature pelo seu índice, e dar append para uma lista
     for row in data: column_list.append(row[index])            
@@ -95,6 +118,16 @@ input("Aperte Enter para continuar...")
 # TODO: Crie uma função para contar os gêneros. Retorne uma lista.
 # Isso deveria retornar uma lista com [count_male, count_female] (exemplo: [10, 15] significa 10 Masculinos, 15 Femininos)
 def count_gender(data_list):
+    """
+    Função count_gender(data_list).
+    Contar os gêneros e retorna em uma lista.
+    Argumentos:
+        data_list: Lista de dados de uma coluna de uma matriz filtrada.    
+    Retorna:
+        Lista com [count_male, count_female] (exemplo: [10, 15] significa 10 Masculinos, 15 Femininos).
+
+    """
+
     return [count_by_gender_filtered("Male"), count_by_gender_filtered("Female")]
 
 
@@ -113,6 +146,16 @@ input("Aperte Enter para continuar...")
 # TODO: Crie uma função que pegue o gênero mais popular, e retorne este gênero como uma string.
 # Esperamos ver "Male", "Female", ou "Equal" como resposta.
 def most_popular_gender(data_list):    
+    """
+    most_popular_gender(data_list).
+    Pega o gênero mais popular, e retorne este gênero como uma string.
+    Argumentos:
+        data_list: Lista de dados de uma coluna de uma matriz filtrada.    
+    Retorna:
+        Apresenta "Male", "Female", ou "Equal" como resposta.
+
+    """
+
     answer = ""
     count_result_by_male = count_gender(data_list)[0]
     count_result_by_female = count_gender(data_list)[1]
@@ -154,6 +197,16 @@ customer   = count_by_user_type_filtered("Customer")
 subscriber = count_by_user_type_filtered("Subscriber")
 
 def count_user_type(data_list):
+    """
+    Função count_user_type(data_list).
+    Contar os tipos de usuários e retorna em uma lista.
+    Argumentos:
+        data_list: Lista de dados de uma coluna de uma matriz filtrada.    
+    Retorna:
+        Lista com [count_customer, count_subscriber] (exemplo: [10, 15] significa 10 Customer, 15 Subscriber).
+
+    """
+    
     return [count_by_user_type_filtered("Customer"), count_by_user_type_filtered("Subscriber")]
 
 # Se tudo está rodando como esperado, verifique este gráfico!
