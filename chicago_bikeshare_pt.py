@@ -34,16 +34,16 @@ def print_data(list, size, column=False):
     Argumentos:
         list: Lista que será varrida.
         size: Limite do indice a ser varrido.
-        column: Determina qual característica a ser listado, caso não seja declarado será listado todas as características 
+        column: Determina qual característica a ser listado, caso não seja declarado será listado todas as características
     Retorna:
         Imprime uma lista a partir de uma lista de dados.
 
     """
-    
+
     first_twenty_rows = list[:size]
-    for row in first_twenty_rows: 
+    for row in first_twenty_rows:
         print(row if not column else row[column])
-        
+
 print_data(data_list, 20)
 
 # Vamos mudar o data_list para remover o cabeçalho dele.
@@ -69,7 +69,7 @@ def column_to_list(data, index):
     Adiciona colunas(features) de uma lista em outra lista, na mesma ordem.
     Argumentos:
         data: Base com a matriz a ser filtrada.
-        index: Determina o índice da coluna a ser filtrada.    
+        index: Determina o índice da coluna a ser filtrada.
     Retorna:
         Uma lista com os dados da coluna filtrada da base.
 
@@ -77,7 +77,7 @@ def column_to_list(data, index):
 
     column_list = []
     # Dica: Você pode usar um for para iterar sobre as amostras, pegar a feature pelo seu índice, e dar append para uma lista
-    for row in data: column_list.append(row[index])            
+    for row in data: column_list.append(row[index])
     return column_list
 
 gender_list = column_to_list(data_list, -2)
@@ -94,12 +94,26 @@ assert column_to_list(data_list, -2)[0] == "" and column_to_list(data_list, -2)[
 input("Aperte Enter para continuar...")
 # Agora sabemos como acessar as features, vamos contar quantos Male (Masculinos) e Female (Femininos) o dataset tem
 # TAREFA 4
+def count_by_gender_filtered(gender_filtered):
+    """
+    Função count_by_gender_filtered(data_list).
+    Contar a quantidade de resultados por gênero.
+    Argumentos:
+        gender_filtered: Gênero a ser filtrado.
+    Retorna:
+        Valor da contagem.
 
-count_by_gender_filtered = lambda gender_filtered: len(list(filter(lambda gender: gender == gender_filtered, gender_list)))
+    """
 
-male   = count_by_gender_filtered("Male")
+    result_count_gender = 0
+
+    for gender in gender_list:
+        if gender == gender_filtered: result_count_gender += 1
+
+    return result_count_gender
+
+male = count_by_gender_filtered("Male")
 female = count_by_gender_filtered("Female")
-
 # Verificando o resultado
 print("\nTAREFA 4: Imprimindo quantos masculinos e femininos nós encontramos")
 print("Masculinos: ", male, "\nFemininos: ", female)
@@ -117,7 +131,7 @@ def count_gender(data_list):
     Função count_gender(data_list).
     Contar os gêneros e retorna em uma lista.
     Argumentos:
-        data_list: Lista de dados de uma coluna de uma matriz filtrada.    
+        data_list: Lista de dados de uma coluna de uma matriz filtrada.
     Retorna:
         Lista com [count_male, count_female] (exemplo: [10, 15] significa 10 Masculinos, 15 Femininos).
 
@@ -139,12 +153,12 @@ input("Aperte Enter para continuar...")
 # Agora que nós podemos contar os usuários, qual gênero é mais prevalente?
 # TAREFA 6
 # Esperamos ver "Male", "Female", ou "Equal" como resposta.
-def most_popular_gender(data_list):    
+def most_popular_gender(data_list):
     """
     most_popular_gender(data_list).
     Pega o gênero mais popular, e retorne este gênero como uma string.
     Argumentos:
-        data_list: Lista de dados de uma coluna de uma matriz filtrada.    
+        data_list: Lista de dados de uma coluna de uma matriz filtrada.
     Retorna:
         Apresenta "Male", "Female", ou "Equal" como resposta.
 
@@ -194,7 +208,7 @@ def count_user_type(data_list):
     Função count_user_type(data_list).
     Contar os tipos de usuários e retorna em uma lista.
     Argumentos:
-        data_list: Lista de dados de uma coluna de uma matriz filtrada.    
+        data_list: Lista de dados de uma coluna de uma matriz filtrada.
     Retorna:
         Lista com [count_customer, count_subscriber] (exemplo: [10, 15] significa 10 Customer, 15 Subscriber).
 
@@ -211,7 +225,7 @@ plt.ylabel('Quantidade')
 plt.xlabel('Tipo de Usuário')
 plt.xticks(y_pos, types)
 plt.title('Quantidade por Tipo de Usuário')
-plt.show(block=True)    
+plt.show(block=True)
 print("\nTAREFA 7: Verifique o gráfico!")
 
 input("Aperte Enter para continuar...")
@@ -286,7 +300,7 @@ def count_items(column_list):
     Função count_items(column_list).
     Conta os tipos de usuários, sem definir os tipos.
     Argumentos:
-        column_list: Lista de dados de uma coluna de uma matriz filtrada.        
+        column_list: Lista de dados de uma coluna de uma matriz filtrada.
     Retorna:
         Retorna 2 listas contendo [item_types] e [count_items] Ex: ['', 'Female', 'Male'], [316867, 298784, 935854]
 
