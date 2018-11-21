@@ -197,27 +197,26 @@ input("Aperte Enter para continuar...")
 # TAREFA 7
 user_type_list = column_to_list(data_list, -3)
 
-count_by_user_type_filtered = lambda user_type_filtered: len(list(filter(lambda user_type: user_type == user_type_filtered, user_type_list)))
-
-customer   = count_by_user_type_filtered("Customer")
-subscriber = count_by_user_type_filtered("Subscriber")
-
-def count_user_type(data_list):
+def count_items(column_list, item_types=[], count_items=[]):
     """
-    Função count_user_type(data_list).
-    Contar os tipos de usuários e retorna em uma lista.
+    Função count_items(column_list).
+    Conta os tipos de usuários, sem definir os tipos.
     Argumentos:
-        data_list: Lista de dados de uma coluna de uma matriz filtrada.
+        column_list: Lista de dados de uma coluna de uma matriz filtrada.
     Retorna:
-        Lista com [count_customer, count_subscriber] (exemplo: [10, 15] significa 10 Customer, 15 Subscriber).
+        Retorna 2 listas contendo [item_types] e [count_items] Ex: ['', 'Female', 'Male'], [316867, 298784, 935854]
 
     """
 
-    return [count_by_user_type_filtered("Customer"), count_by_user_type_filtered("Subscriber")]
+    for item in column_list:
+        if item not in item_types:
+            item_types.append(item)
+            count_items.append(column_list.count(item))
+
+    return item_types, count_items
 
 # Se tudo está rodando como esperado, verifique este gráfico!
-types = ["Customer", "Subscriber"]
-quantity = count_user_type(data_list)
+types, quantity = count_items(user_type_list, [], [])
 y_pos = list(range(len(types)))
 plt.bar(y_pos, quantity)
 plt.ylabel('Quantidade')
@@ -294,27 +293,10 @@ input("Aperte Enter para continuar...")
 print("Você vai encarar o desafio? (yes ou no)")
 answer = "yes"
 
-def count_items(column_list):
-    """
-    Função count_items(column_list).
-    Conta os tipos de usuários, sem definir os tipos.
-    Argumentos:
-        column_list: Lista de dados de uma coluna de uma matriz filtrada.
-    Retorna:
-        Retorna 2 listas contendo [item_types] e [count_items] Ex: ['', 'Female', 'Male'], [316867, 298784, 935854]
-
-    """
-
-    count_by_user_type_filtered = lambda user_type_filtered: len(list(filter(lambda user_type: user_type == user_type_filtered, column_list)))
-    item_types = list(set(column_list))
-    count_items = list(map(count_by_user_type_filtered, item_types))
-
-    return item_types, count_items
-
 if answer == "yes":
     # ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
     column_list = column_to_list(data_list, -2)
-    types, counts = count_items(column_list)
+    types, counts = count_items(column_list, [], [])
     print("\nTAREFA 12: Imprimindo resultados para count_items()")
     print("Tipos:", types, "Counts:", counts)
     assert len(types) == 3, "TAREFA 12: Há 3 tipos de gênero!"
